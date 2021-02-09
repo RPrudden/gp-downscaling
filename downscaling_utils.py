@@ -61,7 +61,8 @@ def condition(f, l, a2, sdim):
 
     C_p = C - np.linalg.multi_dot([C_hl.T, np.linalg.pinv(C_l), C_hl])
     C_p = make_pd(C_p)
-    cp2 = sp.linalg.sqrtm(C_p)
+#     cp2 = sp.linalg.sqrtm(C_p)
+    cp2 = sp.linalg.cholesky(C_p).T
     mu_p = np.linalg.multi_dot([C_hl.T, np.linalg.pinv(C_l), f.flatten()])
     
     return (mu_p, C_p, cp2)
